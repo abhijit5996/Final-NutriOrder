@@ -215,7 +215,7 @@ const Invoice = forwardRef<HTMLDivElement, InvoiceProps>(
             </thead>
             <tbody>
               {items.map((item, index) => (
-                <tr key={item.id} style={{ borderBottom: index < items.length - 1 ? '1px solid #f0f0f0' : 'none', backgroundColor: index % 2 === 0 ? '#ffffff' : '#fafafa' }}>
+                <tr key={item.id || item.food?.id || item.food?._id || `item-${index}`} style={{ borderBottom: index < items.length - 1 ? '1px solid #f0f0f0' : 'none', backgroundColor: index % 2 === 0 ? '#ffffff' : '#fafafa' }}>
                   <td style={{ padding: '16px', color: '#888', fontWeight: '500' }}>{index + 1}</td>
                   <td style={{ padding: '16px' }}>
                     <div>
