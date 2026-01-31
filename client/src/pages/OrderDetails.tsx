@@ -132,7 +132,14 @@ const OrderDetails: React.FC = () => {
     );
   }
 
-  const status = statusConfig[order.status as keyof typeof statusConfig];
+  const status = statusConfig[order.status?.toUpperCase()] ??
+                {
+                  label: 'Pending',
+                  icon: Clock,
+                  color: 'text-amber-500',
+                  bg: 'bg-amber-500/10',
+                  border: 'border-amber-500/20'
+                };
   const StatusIcon = status.icon;
 
   const handleRepeatOrder = () => {
@@ -202,7 +209,7 @@ const OrderDetails: React.FC = () => {
             <h3 className="font-semibold text-lg mb-4">Order Items</h3>
             <div className="space-y-4">
               {order.items.map((item: any) => (
-                <div key={item._id} className="flex gap-4">
+                <div key={item.food._id} className="flex gap-4">
                   <img
                     src={item.food.image}
                     alt={item.food.name}

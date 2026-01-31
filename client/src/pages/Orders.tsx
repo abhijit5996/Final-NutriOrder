@@ -172,7 +172,14 @@ const Orders: React.FC = () => {
         <div className="min-h-screen py-8">
           <div className="container mx-auto px-4 space-y-6">
             {orders.map((order, index) => {
-              const status = statusConfig[order.status];
+              const status = statusConfig[order.status?.toUpperCase()] ??
+              {
+                label: 'Pending',
+                icon: Clock,
+                color: 'text-amber-500',
+                bg: 'bg-amber-500/10',
+                border: 'border-amber-500/20'
+              };
               const StatusIcon = status.icon;
 
               return (
